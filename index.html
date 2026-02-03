@@ -100,7 +100,7 @@
 <body>
 
 <iframe id="bgMusic" width="0" height="0"
-  src="https://www.youtube.com/embed/ILz0zDUlHcY?autoplay=0&loop=1&playlist=ILz0zDUlHcY&start=24&controls=0&mute=1"
+  src="https://www.youtube.com/embed/ILz0zDUlHcY?autoplay=1&loop=1&playlist=ILz0zDUlHcY&start=24&controls=0&mute=1"
   frameborder="0"
   allow="autoplay; encrypted-media"
   allowfullscreen>
@@ -251,11 +251,6 @@
       document.getElementById('lock').classList.add('hidden'); // hide password section
       revealSections();  // show the rest
       startLiveCounter(); // start your live counter
-
-      // Start background music now
-      const bgMusic = document.getElementById('bgMusic');
-      // reload the src to trigger autoplay with sound
-      bgMusic.src = bgMusic.src;  
     } 
     else {
       alert('That date means everything to us 💔');
@@ -341,8 +336,9 @@
 
   function unlockSite() {
     document.getElementById('lock').classList.remove('hidden');
+
     const bgMusic = document.getElementById('bgMusic');
-    bgMusic.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+    bgMusic.src = bgMusic.src.replace("mute=1", "mute=0");
   }
 </script>
 
