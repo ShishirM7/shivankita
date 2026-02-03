@@ -95,17 +95,10 @@
     #noBtn:hover {
       background: #9a9a9a;
     }
-
-    #passwordMsg, #forgiveMsg {
-      margin-top: 10px;
-      font-size: 1.1rem;
-      color: #ff4d6d;
-    }
   </style>
 </head>
 <body>
 
-<!-- Background music iframe -->
 <iframe id="bgMusic" width="0" height="0"
   src="https://www.youtube.com/embed/ILz0zDUlHcY?autoplay=1&loop=1&playlist=ILz0zDUlHcY&start=24&controls=0&mute=1"
   frameborder="0"
@@ -114,16 +107,26 @@
 </iframe>
 
 <header>
-  <h1>Hey Banku ❤️</h1>
+  <h1>Hey Banku❤️</h1>
 </header>
 
 <section id="apology">
-  <h2>I'm Sorry 😔</h2>
+  <h2>I'm Sorry😔</h2>
   <p>I know I made mistakes. I hurt you, and I regret it deeply.</p>
   <p>You are my safe place, my love, my home. I promise to grow, to listen, and to be better.</p>
   <p>This is me opening my heart, just for you.</p> 
   <button class="button" onclick="unlockSite()">Enter</button>
 </section>
+
+<!--
+<section id="lock" class="card hidden">
+  <h2>One small question🔐</h2>
+  <p>Enter our special date</p>
+  <input id="password" placeholder="DDMMYYYY"/>
+  <br><br>
+  <button class="button" onclick="checkPassword()">Unlock❤️</button>
+</section>
+-->
 
 <section id="lock" class="card hidden">
   <h2>One small question 🔐</h2>
@@ -131,8 +134,9 @@
   <input id="password" placeholder="DDMMYYYY"/>
   <br><br>
   <button class="button" onclick="checkPassword()">Unlock ❤️</button>
-  <p id="passwordMsg"></p>
+  <p id="passwordMsg" style="color: #ff4d6d; margin-top:10px;"></p>
 </section>
+
 
 <section class="card hidden" id="timeline">
   <h2>Our Story 📅</h2>
@@ -149,7 +153,7 @@
 </section>
 
 <section class="card hidden" id="gallery_1">
-  <h2>How you fill my life with colours 📸</h2>
+  <h2>How you fill my life with colours📸</h2>
   <div class="gallery">
     <img src="images/Bouquet.jpeg" />
     <img src="images/Rosewall.jpeg" />
@@ -157,13 +161,13 @@
 </section>
 
 <section class="card hidden" id="reasons">
-  <h2>Why I Love You 💖</h2>
-  <p id="loveText">Click the button ❤️</p>
+  <h2>Why I Love You💖</h2>
+  <p id="loveText">Click the button❤️</p>
   <button class="button" onclick="nextReason()">Show me</button>
 </section>
 
 <section class="card hidden" id="gallery_2">
-  <h2>Our Memories 📸</h2>
+  <h2>Our Memories📸</h2>
   <div class="gallery">
     <img src="images/Beach selfie.jpeg" />
     <img src="images/Coldplay.jpeg" />
@@ -178,133 +182,148 @@
 </section>
 
 <section class="card hidden" id="music">
-  <h2>Song which reminds me of you 🎶</h2>
+  <h2>Song which reminds me of you🎶</h2>
+<!--  <iframe style="border-radius:12px" src="https://music.youtube.com/playlist?list=PLLT06ktN9MbOKPxE0lehZND1zOonOPFGy&si=Im9cYXK9FtL-B1Tm" width="100%" height="152" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe> -->
   <iframe width="560" height="315" src="https://www.youtube.com/embed/BcqxLCWn-CE?si=RqpEK4x70Td-fqcD" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> 
 </section>
+
+<!--
+<section class="card hidden" id="forgive">
+  <h2>One last thing…💗</h2>
+  <p>Please forgive me🥺</p>
+  <div style="position: relative; height: 120px;">
+  <button id="yesBtn" class="button" onclick="yesForgive()">Yes❤️</button>
+  <button id="noBtn" class="button" style="position:absolute; left:60%; top:0;" onmouseover="moveNo()" onclick="moveNo()">No💔</button>
+</div>
+</section>
+-->
 
 <section class="card hidden" id="forgive">
   <h2>One last thing… 💗</h2>
   <p>Will you forgive me?</p>
   <div style="position: relative; height: 120px;">
     <button id="yesBtn" class="button" onclick="yesForgive()">Yes ❤️</button>
-    <button id="noBtn" class="button" style="position:absolute; left:60%; top:0;" onmouseover="moveNo()" onclick="moveNo()">No 💔</button>
+    <button id="noBtn" class="button" style="position:absolute; left:60%; top:0; background:#b0b0b0; color:#333;" onmouseover="moveNo()" onclick="moveNo()">No 💔</button>
   </div>
-  <p id="forgiveMsg"></p>
+  <p id="forgiveMsg" style="margin-top: 10px; font-size:1.2rem; color:#ff4d6d;"></p>
 </section>
 
+
 <footer>
-  <p>Forever yours ❤️</p>
+  <p>Forever yours❤️</p>
 </footer>
 
+<!-- <button class="button" onclick="toggleDarkMode()">🌙 Toggle Night Mode</button> -->
+
 <script>
-const correctPassword = "11022020"; // CHANGE THIS
+  const correctPassword = "11022020"; // CHANGE THIS
 
-function parseDateFromPassword() {
-  const d = correctPassword;
-  const day = parseInt(d.substring(0,2));
-  const month = parseInt(d.substring(2,4)) - 1;
-  const year = parseInt(d.substring(4,8));
-  return new Date(year, month, day);
-}
+  function parseDateFromPassword() {
+    const d = correctPassword;
+    const day = parseInt(d.substring(0,2));
+    const month = parseInt(d.substring(2,4)) - 1;
+    const year = parseInt(d.substring(4,8));
+    return new Date(year, month, day);
+  }
 
-let counterInterval;
-let animated = false;
+  let counterInterval;
+  let animated = false;
 
-function updateDayCount(animate = false) {
-  const startDate = parseDateFromPassword();
-  const now = new Date();
-  const diff = now - startDate;
+  function updateDayCount(animate = false) {
+    const startDate = parseDateFromPassword();
+    const now = new Date();
+    const diff = now - startDate;
 
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-  const minutes = Math.floor((diff / (1000 * 60)) % 60);
-  const seconds = Math.floor((diff / 1000) % 60);
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
 
-  if (animate && !animated) {
-    animated = true;
-    let d = 2185, h = 0, m = 0, s = 0;
-    const anim = setInterval(() => {
+    if (animate && !animated) {
+      animated = true;
+      let d = 2185, h = 0, m = 0, s = 0;
+      const anim = setInterval(() => {
+        document.getElementById('dayCount').innerHTML =
+          `<strong>${d}</strong> days <strong>${h}</strong> hours <strong>${m}</strong> minutes <strong>${s}</strong> seconds together...❤️`;
+
+        if (d < days) d++;
+        else if (h < hours) h++;
+        else if (m < minutes) m++;
+        else if (s < seconds) s++;
+        else clearInterval(anim);
+      }, 30);
+    } else {
       document.getElementById('dayCount').innerHTML =
-        `<strong>${d}</strong> days <strong>${h}</strong> hours <strong>${m}</strong> minutes <strong>${s}</strong> seconds together...❤️`;
-
-      if (d < days) d++;
-      else if (h < hours) h++;
-      else if (m < minutes) m++;
-      else if (s < seconds) s++;
-      else clearInterval(anim);
-    }, 30);
-  } else {
-    document.getElementById('dayCount').innerHTML =
-      `<strong>${days}</strong> days <strong>${hours}</strong> hours <strong>${minutes}</strong> minutes <strong>${seconds}</strong> seconds together...❤️`;
+        `<strong>${days}</strong> days <strong>${hours}</strong> hours <strong>${minutes}</strong> minutes <strong>${seconds}</strong> seconds together...❤️`;
+    }
   }
-}
 
-function startLiveCounter() {
-  updateDayCount(true);
-  counterInterval = setInterval(() => updateDayCount(false), 1000);
-}
-
-function unlockSite() {
-  document.getElementById('lock').classList.remove('hidden');
-}
-
-function checkPassword() {
-  const input = document.getElementById('password').value;
-  const msg = document.getElementById('passwordMsg');
-
-  if (input === correctPassword) {
-    document.getElementById('lock').classList.add('hidden'); // hide password section
-    revealSections();
-    startLiveCounter();
-
-    // ✅ Music starts only here
-    const bgMusic = document.getElementById('bgMusic');
-    bgMusic.src = bgMusic.src;
-
-    msg.innerText = "";
-  } else {
-    msg.innerText = "That date means everything to us 💔";
+  function startLiveCounter() {
+    updateDayCount(true);   // animated first time
+    counterInterval = setInterval(() => updateDayCount(false), 1000);
   }
-}
 
-function revealSections() {
-  ['reasons','timeline','music','gallery_1', 'gallery_2', 'gallery_3','forgive'].forEach(id => {
-    document.getElementById(id).classList.remove('hidden');
-  });
-}
+  function unlockSite() {
+    document.getElementById('lock').classList.remove('hidden');
+  }
 
-const reasons = [
-  "Your smile heals me 😍",
-  "Your heart is pure gold 💕",
-  "You make life beautiful ✨",
-  "You are my best friend 🤍",
-  "Because loving you is easy 💖",
-  "Your laugh is my favorite sound 😂",
-  "Being with you feels like home 🏡",
-  "You light up my darkest days 🌟",
-  "Your hugs are magic 🤗",
-  "I love how kind you are 💝",
-  "You inspire me every day 💪",
-  "Your eyes tell the most beautiful stories 👀",
-  "You make ordinary moments extraordinary ✨",
-  "I’m grateful for every second with you ⏳",
-  "Your love makes me a better person ❤️",
-  "You are my sunshine on cloudy days ☀️",
-  "I adore your sense of humor 😄",
-  "Your voice is my favorite melody 🎶",
-  "You are my dream come true 💭",
-  "Every moment with you is a treasure 💎"
-];
-let r = 0;
-function nextReason() {
-  document.getElementById('loveText').innerText = reasons[r];
-  r = (r + 1) % reasons.length;
-}
 
-let yesScale = 1;
-function yesForgive() {
+  function checkPassword() {
+    const input = document.getElementById('password').value;
+    const msg = document.getElementById('passwordMsg');
+
+    if (input === correctPassword) {
+      document.getElementById('lock').classList.add('hidden'); // hide password section
+      revealSections();  // show the rest
+      startLiveCounter(); // start your live counter 
+
+      msg.innerText = ""; // clear any previous wrong message
+    } else {
+      msg.innerText = "That date means everything to us💔"; // inline error
+    }
+  }
+
+
+  function revealSections() {
+    ['reasons','timeline','music','gallery_1', 'gallery_2', 'gallery_3','forgive'].forEach(id => {
+      document.getElementById(id).classList.remove('hidden');
+    });
+  }
+
+  const reasons = [
+    "Your smile heals me 😍",
+    "Your heart is pure gold 💕",
+    "You make life beautiful ✨",
+    "You are my best friend 🤍",
+    "Because loving you is easy 💖",
+    "Your laugh is my favorite sound 😂",
+    "Being with you feels like home 🏡",
+    "You light up my darkest days 🌟",
+    "Your hugs are magic 🤗",
+    "I love how kind you are 💝",
+    "You inspire me every day 💪",
+    "Your eyes tell the most beautiful stories 👀",
+    "You make ordinary moments extraordinary ✨",
+    "I’m grateful for every second with you ⏳",
+    "Your love makes me a better person ❤️",
+    "You are my sunshine on cloudy days ☀️",
+    "I adore your sense of humor 😄",
+    "Your voice is my favorite melody 🎶",
+    "You are my dream come true 💭",
+    "Every moment with you is a treasure 💎"
+  ];
+  let r = 0;
+  function nextReason() {
+    document.getElementById('loveText').innerText = reasons[r];
+    r = (r + 1) % reasons.length;
+  }
+
+  let yesScale = 1;
+
+
+  function yesForgive() {
   const msg = document.getElementById('forgiveMsg');
-  msg.innerText = "I knew you would say YES ❤️";
+  msg.innerText = "I knew you would say YES❤️"; // inline success message
 
   for (let i = 0; i < 40; i++) {
     const heart = document.createElement('div');
@@ -317,21 +336,42 @@ function yesForgive() {
   }
 }
 
-function moveNo() {
-  const noBtn = document.getElementById('noBtn');
-  const yesBtn = document.getElementById('yesBtn');
 
-  noBtn.style.left = Math.random() * 70 + '%';
-  noBtn.style.top = Math.random() * 60 + 'px';
+  function moveNo() {
+    const noBtn = document.getElementById('noBtn');
+    const yesBtn = document.getElementById('yesBtn');
 
-  yesScale += 0.15;
-  yesBtn.style.transform = `scale(${yesScale})`;
 
-  if (yesScale > 2.2) {
+    // move NO button randomly
+    noBtn.style.left = Math.random() * 70 + '%';
+    noBtn.style.top = Math.random() * 60 + 'px';
+
+
+    // grow YES button
+    yesScale += 0.15;
+    yesBtn.style.transform = `scale(${yesScale})`;
+
+
+    // once YES is huge, hide NO
+    if (yesScale > 2.2) {
     noBtn.style.display = 'none';
-    yesBtn.innerText = 'Yes Yes Yes!!! ❤️';
+    yesBtn.innerText = 'Yes Yes Yes!!!❤️';
+    }
+    
+
+<!--  alert('I love you forever❤️'); -->
+    }
+
+  function toggleDarkMode() {
+    document.body.classList.toggle('dark');
   }
-}
+
+  function unlockSite() {
+    document.getElementById('lock').classList.remove('hidden');
+
+    const bgMusic = document.getElementById('bgMusic');
+    bgMusic.src = bgMusic.src.replace("mute=1", "mute=0");
+  }
 </script>
 
 </body>
