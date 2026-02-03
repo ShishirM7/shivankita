@@ -99,9 +99,11 @@
 </head>
 <body>
 
-<iframe id="bgMusic" width="0" height="0" 
-    src="https://www.youtube.com/embed/ILz0zDUlHcY?autoplay=1&loop=1&playlist=ILz0zDUlHcY&start=24&controls=0&mute=1" 
-    frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+<iframe id="bgMusic" width="0" height="0"
+  src="https://www.youtube.com/embed/ILz0zDUlHcY?autoplay=0&loop=1&playlist=ILz0zDUlHcY&start=24&controls=0&mute=1"
+  frameborder="0"
+  allow="autoplay; encrypted-media"
+  allowfullscreen>
 </iframe>
 
 <header>
@@ -170,7 +172,7 @@
 </section>
 
 <section class="card hidden" id="music">
-  <h2>Our Song🎶</h2>
+  <h2>Song which reminds me of you🎶</h2>
 <!--  <iframe style="border-radius:12px" src="https://music.youtube.com/playlist?list=PLLT06ktN9MbOKPxE0lehZND1zOonOPFGy&si=Im9cYXK9FtL-B1Tm" width="100%" height="152" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe> -->
   <iframe width="560" height="315" src="https://www.youtube.com/embed/BcqxLCWn-CE?si=RqpEK4x70Td-fqcD" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> 
 </section>
@@ -247,9 +249,13 @@
     if (document.getElementById('password').value === correctPassword) {
       document.getElementById('lock').classList.add('hidden');
       revealSections();
-      startLiveCounter(); // 🔥 start live counter
+      startLiveCounter(); // keeps your live counter working
+
+      // Start background music with sound
+      const bgMusic = document.getElementById('bgMusic');
+      bgMusic.src = bgMusic.src.replace("autoplay=0&mute=1", "autoplay=1&mute=0");
     } else {
-      alert('That date means everything to us💔');
+      alert('That date means everything to us 💔');
     }
   }
 
@@ -260,11 +266,26 @@
   }
 
   const reasons = [
-    "Your smile heals me😍",
-    "Your heart is pure gold💕",
-    "You make life beautiful✨",
-    "You are my best friend🤍",
-    "Because loving you is easy💖"
+    "Your smile heals me 😍",
+    "Your heart is pure gold 💕",
+    "You make life beautiful ✨",
+    "You are my best friend 🤍",
+    "Because loving you is easy 💖",
+    "Your laugh is my favorite sound 😂",
+    "Being with you feels like home 🏡",
+    "You light up my darkest days 🌟",
+    "Your hugs are magic 🤗",
+    "I love how kind you are 💝",
+    "You inspire me every day 💪",
+    "Your eyes tell the most beautiful stories 👀",
+    "You make ordinary moments extraordinary ✨",
+    "I’m grateful for every second with you ⏳",
+    "Your love makes me a better person ❤️",
+    "You are my sunshine on cloudy days ☀️",
+    "I adore your sense of humor 😄",
+    "Your voice is my favorite melody 🎶",
+    "You are my dream come true 💭",
+    "Every moment with you is a treasure 💎"
   ];
   let r = 0;
   function nextReason() {
@@ -318,7 +339,7 @@
   function unlockSite() {
     document.getElementById('lock').classList.remove('hidden');
     const bgMusic = document.getElementById('bgMusic');
-    bgMusic.src = bgMusic.src.replace("mute=1", "mute=0");
+    bgMusic.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
   }
 </script>
 
