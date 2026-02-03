@@ -106,7 +106,7 @@
 <section id="lock" class="card hidden">
   <h2>One small question 🔐</h2>
   <p>Enter our special date</p>
-  <input id="password" placeholder="DDMMYYYY" />
+  <input id="password" />
   <br><br>
   <button class="button" onclick="checkPassword()">Unlock ❤️</button>
 </section>
@@ -150,8 +150,6 @@
 
 <button class="button" onclick="toggleDarkMode()">🌙 Toggle Night Mode</button>
 
-
-
 <script>
   const correctPassword = "09091995"; // CHANGE THIS
 
@@ -162,7 +160,7 @@
   function checkPassword() {
     if (document.getElementById('password').value === correctPassword) {
       document.getElementById('lock').classList.add('hidden');
-      startTyping();
+      revealSections();
     } else {
       alert('That date means everything to us 💔');
     }
